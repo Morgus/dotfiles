@@ -39,4 +39,6 @@ alias open='xdg-open'
 # Vi to vim
 alias vi='vim'
 export EDITOR=/usr/bin/vim
+# Check Arch news quickly in terminal
+alias checknews='lynx https://www.archlinux.org/'
 
