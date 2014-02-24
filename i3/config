@@ -162,6 +162,6 @@ exec --nostartup-id xset dpms 600
 
 # Start common programs automatically
 exec --no-startup-id i3-msg 'workspace 1:Sh; exec /usr/bin/i3-sensible-terminal; exec /usr/bin/i3-sensible-terminal'
-exec --no-startup-id sleep 1 && i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
-exec --no-startup-id sleep 1.1 &&i3-msg 'workspace 1:Sh; focus right'
+exec --no-startup-id i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
+exec --no-startup-id i3-msg 'workspace 3'
 
