@@ -18,6 +18,13 @@ case "$1" in
 			echo $cur_brightness > '/sys/class/leds/asus::kbd_backlight/brightness'
 		fi
 		;;
+	reset)
+		# For some reason the keyboard starts with the backlight fully on
+		# but the current brightness value set to 0. It needs to be set to
+		# another value before setting back to 0.
+		echo 1 > '/sys/class/leds/asus::kbd_backlight/brightness'
+		echo 0 > '/sys/class/leds/asus::kbd_backlight/brightness'
+		;;
 	*)
 		exit 1
 esac

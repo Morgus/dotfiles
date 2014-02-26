@@ -165,3 +165,6 @@ exec --no-startup-id i3-msg 'workspace 1:Sh; exec /usr/bin/i3-sensible-terminal;
 exec --no-startup-id i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 3'
 
+# Reset keyboard backlight to 0
+exec sudo /home/aleksi/bin/kbd_backlight.sh reset
+
