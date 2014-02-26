@@ -42,3 +42,9 @@ export EDITOR=/usr/bin/vim
 # Check Arch news quickly in terminal
 alias checknews='lynx https://www.archlinux.org/'
 
+# Connect to a media server over ssh (read-only)
+function connect_media () {
+	sshfs -o ro media@$1: ~/media
+}
+alias disconnect_media='fusermount -u ~/media'
+
