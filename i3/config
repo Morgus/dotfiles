@@ -109,10 +109,15 @@ bindsym $mod+r mode "resize"
 # Exit mode
 mode "(E)xit, (R)eboot, (X) Shutdown, (W) Restart i3, Reload (C)onfig" {
 	bindsym r exec systemctl reboot
+	bindsym $mod+r exec systemctl reboot
 	bindsym e exec i3-msg exit
+	bindsym $mod+e exec i3-msg exit
 	bindsym x exec systemctl poweroff
+	bindsym $mod+x exec systemctl poweroff
 	bindsym w restart
+	bindsym $mod+w restart
 	bindsym c reload
+	bindsym $mod+c reload
 
 	# Back
 	bindsym Return mode "default"
