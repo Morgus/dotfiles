@@ -27,6 +27,9 @@ export HISTFILE=~/.zsh/history
 export HISTSIZE=1000
 export SAVEHIST=1000
 
+# Make can have 5 simultaneous jobs
+export MAKEFLAGS=-j5
+
 # ls/grep coloring
 alias ls='ls --color=auto'
 alias grep='egrep --color=auto'
