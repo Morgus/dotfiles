@@ -12,10 +12,6 @@ new_window pixel
 # Disable mouse focus changes
 focus_follows_mouse no
 
-# Name workspaces
-workspace "1:Sh" output eDP1
-workspace "2:Web" output eDP1
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -77,6 +73,7 @@ bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
+bindsym $mod+F1 workspace VM
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1:Sh
 bindsym $mod+Shift+2 move container to workspace 2:Web
@@ -88,6 +85,7 @@ bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+F1 move container to workspace VM
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -109,10 +107,15 @@ bindsym $mod+r mode "resize"
 # Exit mode
 mode "(E)xit, (R)eboot, (X) Shutdown, (W) Restart i3, Reload (C)onfig" {
 	bindsym r exec systemctl reboot
+	bindsym $mod+r exec systemctl reboot
 	bindsym e exec i3-msg exit
+	bindsym $mod+e exec i3-msg exit
 	bindsym x exec systemctl poweroff
+	bindsym $mod+x exec systemctl poweroff
 	bindsym w restart
+	bindsym $mod+w restart
 	bindsym c reload
+	bindsym $mod+c reload
 
 	# Back
 	bindsym Return mode "default"
@@ -120,16 +123,9 @@ mode "(E)xit, (R)eboot, (X) Shutdown, (W) Restart i3, Reload (C)onfig" {
 }
 bindsym $mod+x mode "(E)xit, (R)eboot, (X) Shutdown, (W) Restart i3, Reload (C)onfig"
 
-# Function keys that don't work automatically
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym XF86TouchpadToggle exec $(synclient -l | grep "TouchpadOff[[:blank:]]*= 0" > /dev/null && synclient TouchpadOff=1) || synclient TouchpadOff=0
-bindsym XF86KbdBrightnessDown exec sudo /home/aleksi/bin/kbd_backlight.sh down
-bindsym XF86KbdBrightnessUp exec sudo /home/aleksi/bin/kbd_backlight.sh up
-
-# $mod+e starts file manager
-bindsym $mod+e exec terminator -e ranger
 
 # Setup firefox floating windows
 for_window [class="(?i)firefox" window_role="About"] floating enable
@@ -139,9 +135,9 @@ for_window [class="(?i)firefox" instance="^Places$"] floating enable
 # Start i3bar to display a workspace bar
 bar {
         status_command python ~/.i3/.i3pystatus.py
-	position bottom
+	position top
 	workspace_buttons yes
-	font pango:DejaVu Sans Mono, Icons 9
+	font pango:DejaVu Sans Mono 9
 
 	colors {
 		statusline #999999
@@ -157,14 +153,9 @@ bar {
 
 # Set wallpaper
 exec --no-startup-id sh ~/.fehbg
-# Shut down screen after 10 min idle
-exec --nostartup-id xset dpms 600
 
 # Start common programs automatically
 exec --no-startup-id i3-msg 'workspace 1:Sh; exec /usr/bin/i3-sensible-terminal; exec /usr/bin/i3-sensible-terminal'
 exec --no-startup-id i3-msg 'workspace 2:Web; exec /usr/bin/firefox'
 exec --no-startup-id i3-msg 'workspace 3'
-
-# Reset keyboard backlight to 0
-exec sudo /home/aleksi/bin/kbd_backlight.sh reset
 
