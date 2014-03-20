@@ -48,6 +48,10 @@ alias checknews='lynx https://www.archlinux.org/'
 alias ll='ls -l'
 alias lla='ls -la'
 
+# View man pages in lynx
+export BROWSER=/usr/bin/lynx
+alias man='man -H'
+
 # Connect to a media server over ssh (read-only)
 function connect_media () {
 	sshfs -o ro media@$1: ~/media
